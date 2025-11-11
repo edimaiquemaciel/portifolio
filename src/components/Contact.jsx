@@ -12,31 +12,33 @@ function Contact() {
   });
 
   const onSubmit = async (data) => {
-    const formData = data;
+  const formData = new FormData();
+  formData.append("name", data.name);
+  formData.append("email", data.email);
+  formData.append("message", data.message);
+  formData.append("_captcha", "false");
 
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/edimaiqueacacio@gmail.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+  try {
+    const response = await fetch("https://formsubmit.co/ajax/edimaiqueacacio@gmail.com", {
+      method: "POST",
+      body: formData,
+    });
 
-      const data = await response.json();
+    const result = await response.json();
 
-      if (response.ok) {
-        toast.success("Mensagem enviada com sucesso!")
-        reset();
-      } else {
-        console.error("FormSubmit error:", data);
-      }
-    } catch (err) {
-      console.error(err);
-      toast.error(err.message || "Erro ao enviar a mensagem.")
+    if (response.ok) {
+      toast.success("Mensagem enviada com sucesso!");
+      reset();
+    } else {
+      console.error("FormSubmit error:", result);
+      toast.error("Erro ao enviar a mensagem.");
     }
-  };
+  } catch (err) {
+    console.error(err);
+    toast.error("Erro ao enviar a mensagem.");
+  }
+};
+
 
   return (
     <section id="contato" className="py-24 px-4">
