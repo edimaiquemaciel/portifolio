@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+
+:root {
+  /* Fontes */
+  --font-sans: "Inter", sans-serif;
+
+  /* Cores */
+  --color-primary: #6366f1;
+  --color-secondary: #8b5cf6;
+  --color-dark: #1f2937;
+  --color-darker: #111827;
+  --color-text: #ffffff;
+  --color-text-muted: #d1d5db;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+}
+
+@layer components {
+  html {
+    scroll-behavior: smooth;
+  }
+}
