@@ -5,6 +5,7 @@ import { ErrorMessage } from '@hookform/error-message';
 import toast from "react-hot-toast";
 
 import { formSchema } from "../schema/formSchema";
+import emailjs from "@emailjs/browser";
 
 function Contact() {
   const {register, handleSubmit, reset, formState:{isSubmitting, errors}} = useForm({
@@ -12,33 +13,30 @@ function Contact() {
   });
 
   const onSubmit = async (data) => {
-  const formData = new FormData();
-  formData.append("name", data.name);
-  formData.append("email", data.email);
-  formData.append("message", data.message);
-  formData.append("_captcha", "false");
+    try {
+      // Substitua pelos seus IDs do painel EmailJS
+      const serviceId = "service_ag37fvk";
+      const templateId = "template_ekmv5se";
+      const publicKey = "jAJSIwLGheryrtsQR";
 
-  try {
-    const response = await fetch("https://formsubmit.co/ajax/edimaiqueacacio@gmail.com", {
-      method: "POST",
-      body: formData,
-    });
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: data.name,
+          from_email: data.email,
+          message: data.message,
+        },
+        publicKey
+      );
 
-    const result = await response.json();
-
-    if (response.ok) {
       toast.success("Mensagem enviada com sucesso!");
       reset();
-    } else {
-      console.error("FormSubmit error:", result);
+    } catch (err) {
+      console.error(err);
       toast.error("Erro ao enviar a mensagem.");
     }
-  } catch (err) {
-    console.error(err);
-    toast.error("Erro ao enviar a mensagem.");
-  }
-};
-
+  };
 
   return (
     <section id="contato" className="py-24 px-4">

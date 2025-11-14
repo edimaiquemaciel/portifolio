@@ -4,7 +4,7 @@ function ProjectCard({ image, alt, title, description, tags, github, live }) {
   return (
     <div className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 transition-all duration-300 ease-in-out transform hover:-translate-y-[5px] hover:shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1),0_10px_10px_-5px_rgba(0,0,0,0.04)]">
       <div className="relative overflow-hidden">
-        <img src={image} alt={alt} className="w-full h-48 object-cover" />
+        <img src={image} alt={alt} className="w-full h-48 object-top" />
         <div className="absolute inset-0 bg-linear-to-t from-[rgba(17,24,39,0.8)] to-transparent opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100"></div>
       </div>
       <div className="p-6">
@@ -31,11 +31,11 @@ function ProjectCard({ image, alt, title, description, tags, github, live }) {
           })}
         </div>
         <div className="flex gap-4">
-          <a href={github} className="flex items-center gap-2 text-gray-400 no-underline text-sm transition-colors duration-200 ease-in-out hover:text-white">
+          <a href={github} target="_blank" className="flex items-center gap-2 text-gray-400 no-underline text-sm transition-colors duration-200 ease-in-out hover:text-white">
             <FaGithub />
             <span>GitHub</span>
           </a>
-          <a href={live} className="flex items-center gap-2 text-gray-400 no-underline text-sm transition-colors duration-200 ease-in-out hover:text-white">
+          <a href={live} target="_blank" className="flex items-center gap-2 text-gray-400 no-underline text-sm transition-colors duration-200 ease-in-out hover:text-white">
             <FaExternalLinkAlt />
             <span>Live Demo</span>
           </a>

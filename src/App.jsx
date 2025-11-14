@@ -8,8 +8,13 @@ import Projects from './components/Projects'
 import Skills from './components/Skills'
 
 import { Toaster } from 'react-hot-toast';
+import { useEffect } from "react";
 
 function App() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
